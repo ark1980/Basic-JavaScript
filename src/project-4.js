@@ -1,9 +1,14 @@
 // Do not change any of the function names
 
-const multiplyArguments = () => {
-  // use the arguments keyword to multiply all of the arguments together and return the product
-  // if no arguments are passed in return 0
-  // if one argument is passed in just return it
+const multiplyArguments = (...args) => {
+  let total = 1;
+  if (args.length < 1) {
+    return 0;
+  } else if (args.length > 0) {
+    args.forEach((element) => {
+      total *= element;
+    });
+  } return total;
 };
 
 const invokeCallback = cb => cb();
@@ -41,15 +46,15 @@ const map = (arr, cb) => {
 };
 
 const getUserConstructor = () => {
-  // const User = (username, name, email, password) => {
-  //   this.username = username;
-  //   this.name = name;
-  //   this.email = email;
-  //   this.password = password;
-  //   sayHi: function() {
-  //     return `Hello, my name is ${this.name}`;
-  //   };
-  // }; return User;
+  function User(options) {
+    this.username = options.username;
+    this.name = options.name;
+    this.email = options.email;
+    this.password = options.password;
+    this.sayHi = function () {
+      return `Hello, my name is ${this.name}`;
+    };
+  } return User;
   // create a constructor called User
   // it should accept an options object with username, name, email, and password properties
   // in the constructor set the username, name, email, and password properties
@@ -65,14 +70,9 @@ const addPrototypeMethod = (Constructor) => {
 };
 
 const addReverseString = () => {
-  // String.prototype.reverse = (str) => {
-  //   const newArr = str.split();
-  //   const anotherarr = [];
-  //   for (let i = newArr.length - 1; i < newArr.length; i--) {
-  //     anotherarr.push(newArr[i]);
-  //     anotherarr.join();
-  //   } return anotherarr;
-  // }
+  String.prototype.reverse = function () {
+    return this.split('').reverse().join('');
+  };
   // add a method to the string constructor's prototype that returns a reversed copy of the string
   // name this method reverse
   // hint:
